@@ -14,68 +14,20 @@ const mutations = {
   },
   'GET_GROUPS_SUCCESS' (state, payload) {
     state.showLoader = false
-    state.groups = payload.groups == null ? [] : payload.groups
+    state.groups = payload == null ? [] : payload
   }
 }
 
 const actions = {
-  async _fetchgroups ({ commit }, requestbody) {
+  async _fetchgroups ({ commit }) {
     commit('GET_GROUPS')
     await this.$api
-      .$post('/groups', requestbody)
+      .$get('/groups')
       .then((response) => {
         commit('GET_GROUPS_SUCCESS', response)
       })
       .catch(() => {
         commit('GET_GROUPS_ERROR')
-      })
-  },
-
-  async _addgroupservicename ({ commit }, requestbody) {
-    await this.$api
-      .$post('/group/service', requestbody)
-      .then((response) => {
-      })
-      .catch(() => {
-      })
-  },
-  async _editgroupservicename ({ commit }, requestbody) {
-    await this.$api
-      .$put('/group/service', requestbody)
-      .then((response) => {
-      })
-      .catch(() => {
-      })
-  },
-  async _addbankaccount ({ comit }, body) {
-    await this.$api
-      .$post('/group/account', body)
-      .then((response) => {
-      })
-      .catch(() => {
-      })
-  },
-  async _addgroupleader ({ comit }, body) {
-    await this.$api
-      .$post('/group/addleader', body)
-      .then((response) => {
-      })
-      .catch(() => {
-      })
-  },
-  async _deletegroupleader ({ dispatch }, body) {
-    await this.$api
-      .$delete('/group/leader', body)
-      .then((response) => {
-      })
-      .catch(() => {
-      })
-  },
-  async _updatepaymentreference ({ dispatch }, body) {
-    await await this.$api
-      .$put('/group/ref', body)
-      .then((response) => {})
-      .catch(() => {
       })
   }
 }

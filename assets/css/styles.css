@@ -3,21 +3,23 @@
   font-style: normal;
   src: url(../fonts/mulish/Mulish-Regular.ttf);
 }
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  src: url(../fonts/inter/inter_variable.ttf);
+}
 #__nuxt .app {
-  font-family: "FiraSans", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 html,
 body #app {
   -webkit-font-smoothing: antialiased;
-  background: #E5E5E5 !important;
+  background: #f3f2f9 !important;
   font-style: normal !important;
-  font-family: "Mulish", sans-serif !important;
+  font-family: "Inter", sans-serif !important;
   margin: 0;
   overflow-x: hidden;
-  font-size: 12px !important;
-  color: #2c2b2e;
-  font-weight: 100;
 }
 
 /*******************
@@ -35,21 +37,17 @@ span,
 div {
   -webkit-font-smoothing: antialiased;
   font-style: normal !important;
-  font-size: 12px !important;
-  font-family: "Mulish", sans-serif !important;
-  font-weight: 100;
+  font-family: "Inter", sans-serif !important;
 }
 
 p.primary--text.text-h6 {
   -webkit-font-smoothing: antialiased;
   font-style: normal !important;
-  font-size: 12px !important;
-  font-family: "Mulish", sans-serif !important;
-  font-weight: 100;
+  font-family: "Inter", sans-serif !important;
 }
 
 main {
-  background-color: #f4f4f4;
+  background-color: #f3f2f9;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;

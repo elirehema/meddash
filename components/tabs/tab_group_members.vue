@@ -1,0 +1,81 @@
+<template>
+  <v-data-table
+    v-if="members"
+    :headers="headers"
+    :items="members"
+    sort-by="calories"
+    class="elevation-1"
+  >
+    <template #top>
+      <v-toolbar
+        flat
+      >
+        <v-toolbar-title class="font-weight-bold text-h4">
+          Group Members
+        </v-toolbar-title>
+        <v-spacer />
+      </v-toolbar>
+    </template>
+    <template #item.message="{ item }">
+      <v-tooltip left color="primary" class="pa-3" min-width="50%" max-width="80%">
+        <template #activator="{ on, attrs }">
+          <v-icon
+            color="blue"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            mdi-message-badge
+          </v-icon>
+        </template>
+        <span class="font-weight-bold">{{ item.sms }}</span>
+      </v-tooltip>
+    </template>
+    <template #no-data>
+      <p>No data</p>
+    </template>
+    <template #item.name="{item}">
+      <span>{{ item.name.split(" ")[0] + " "+ item.familyName.split(" ")[0] }}</span>
+    </template>
+    <template #item.created="{item}">
+      <span>{{ item.createdDate | dateformat }}</span>
+    </template>
+    <template #item.status="{ item }">
+      <v-chip small :color="item.status == 'ACTIVE' ? 'success':''">
+        <v-avatar v-if="item.status == 'ACTIVE'" left>
+          <v-icon small>
+            mdi-checkbox-marked-circle
+          </v-icon>
+        </v-avatar>
+        {{ item.status }}
+      </v-chip>
+    </template>
+  </v-data-table>
+  <skeleton-table-loader v-else />
+</template>
+<script>
+export default {
+  props: {
+    members: {
+      type: Array,
+      default: null
+    }
+  },
+  data: () => ({
+    headers: [
+
+      { text: 'Name', value: 'name' },
+      { text: 'Role', value: 'role' },
+      { text: 'Status ', value: 'status' },
+      { text: 'Deposits ', value: 'deposits' },
+      { text: 'Dividends ', value: 'dividend' },
+      { text: 'Penalty', value: 'penalty' },
+      { text: 'Withdraws', value: 'withdraws' },
+      { text: 'Dividends ', value: 'dividend' },
+      { text: 'Social Fund', value: 'socialfund' },
+      { text: 'S.F Withdraws', value: 'socialfundWithdraws' },
+      { text: 'Created Date', value: 'created' }
+    ]
+  })
+}
+</script>

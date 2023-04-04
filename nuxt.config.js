@@ -15,13 +15,13 @@ export default {
     middleware: ['router']
   },
   env: {
-    baseUrl: isDev ? 'https://eppg.ngazi.co.tz/paymentGW/portal' : 'https://eppg.ngazi.co.tz/paymentGW/portal'
+    baseUrl: isDev ? 'http://localhost:8080/api/v1' : 'https://eppg.ngazi.co.tz/paymentGW/portal'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'NgaziTech: %s',
-    title: 'NgaziTech',
+    titleTemplate: 'Mkoba: %s',
+    title: 'Mkoba',
     htmlAttrs: {
       lang: 'en'
     },
@@ -48,7 +48,8 @@ export default {
     '~/plugins/vuetify.js',
     '~/mixins/mixins.js',
     '~/plugins/vuepersistence.js',
-    '~/plugins/axios'
+    '~/plugins/axios',
+    '~/plugins/filters.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -1,12 +1,9 @@
 <template>
   <v-app dark>
     <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
       :clipped="false"
       permanent
-      color="primary"
-      dark
+      color="bg"
       app
       height="100%"
       style="max-height: 97.6%;"
@@ -32,22 +29,25 @@
       </v-list>
 
       <v-divider />
-      <v-list-item
-        v-for="child in menus"
-        :key="child.title"
-        :to="child.to"
-        color="success"
-        class="pl-4"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ 'mdi-'+ child.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>
-            <span class="font-weight-light">{{ child.title }}</span>
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+      <v-list shaped nav>
+        <v-list-item
+          v-for="child in menus"
+          :key="child.title"
+          :to="child.to"
+          link
+          color="button"
+          class="pl-4"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ 'mdi-'+ child.icon }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>
+              <span class="font-weight-medium">{{ child.title }}</span>
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
       <template #append>
         <div class="pa-2">
           <v-btn block rounded color="warning" @click="$store.dispatch('_logoutsession')">
@@ -63,18 +63,9 @@
       :clipped-left="clipped"
       fixed
       app
-      color="primary"
+      color="bg"
       flat
-    >
-      <!--<v-app-bar-nav-icon @click.stop="drawer = !drawer" />-->
-      <v-btn
-        icon
-        dark
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `menu${miniVariant ? '' : '-open'}` }}</v-icon>
-      </v-btn>
-    </v-app-bar>
+    />
     <v-main>
       <v-container class="ma-2" height="100%" fluid>
         <nuxt />
@@ -111,14 +102,14 @@ export default {
           to: '/'
         },
         {
-          title: 'Organizations',
+          title: 'Groups',
           icon: 'account-group-outline',
           to: '/groups'
         },
         {
-          title: 'Banks',
+          title: 'Accounts',
           icon: 'bank-outline',
-          to: '/banks'
+          to: '/accounts'
         }
       ],
       miniVariant: false,

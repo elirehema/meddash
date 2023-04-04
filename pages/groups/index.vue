@@ -12,36 +12,27 @@
         class="elevation-1"
         @click:row="rowclick"
       >
-        <template #expanded-item="{ headers, item }">
-          <td :colspan="headers.length">
-            More info about {{ item.name }}
-          </td>
-        </template>
         <template #top>
           <v-toolbar
-            color="primary"
+            color=""
             flat
           >
-            <v-toolbar-title class="text-h4 font-weight-bold white--text">
-              Organizations
+            <v-toolbar-title class=" font-weight-medium">
+              Groups
             </v-toolbar-title>
             <v-spacer />
           </v-toolbar>
         </template>
-        <template #item.actions="{ item }">
-          <v-icon
-            small
-            class="mr-2"
-            @click="editItem(item)"
-          >
-            mdi-pencil
-          </v-icon>
-          <v-icon
-            small
-            @click="deleteItem(item)"
-          >
-            mdi-delete
-          </v-icon>
+        <template #item.created="{item}">
+          <span>{{ item.createdDate | dateformat }}</span>
+        </template>
+        <template #item.status="{ item }">
+          <v-chip :color="item.status == 'ACTIVE' ? 'success':''">
+            <v-avatar v-if="item.status == 'ACTIVE'" left>
+              <v-icon>mdi-checkbox-marked-circle</v-icon>
+            </v-avatar>
+            {{ item.status.toLowerCase() }}
+          </v-chip>
         </template>
         <template #no-data>
           <span>No organization found ...</span>
@@ -58,7 +49,12 @@ export default {
   data () {
     return {
       headers: [
-        { text: 'Organization Name', value: 'groupName' }
+        { text: 'Name', value: 'name' },
+        { text: 'Group Type ', value: 'groupType' },
+        { text: 'Location', value: 'location' },
+        { text: 'Members', value: 'members' },
+        { text: 'Status ', value: 'status' },
+        { text: 'Created Date', value: 'created' }
       ],
       show: false,
       editedItem: {}
@@ -75,15 +71,12 @@ export default {
     })
   },
   created () {
-    const body = {
-      msisdn: this.msisdn
-    }
-    this.$store.dispatch('_fetchgroups', body)
+    this.$store.dispatch('_fetchgroups')
   },
   methods: {
     rowclick (v) {
       this.show = true
-      this.$router.push(`/groups/${v.groupId}`)
+      this.$router.push(`/groups/${v.id}`)
       // console.log(v)
     }
   }

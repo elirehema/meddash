@@ -1,11 +1,12 @@
 @mixin font_family {
-  font-family: "SofiaPro", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 @mixin font_style{
     -webkit-font-smoothing: antialiased;
     font-style: normal !important;
-    font-size: 12px !important;
-    font-family: "Mulish", sans-serif !important;
-    font-weight: 100;
+    //font-size: 12px !important;
+    
+    font-family: 'Inter', sans-serif !important;
+    //font-weight: 100;
 }

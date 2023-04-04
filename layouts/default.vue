@@ -20,7 +20,7 @@
             lazy-src="https://myvodacom.vodacom.co.tz/assets/myvodacom/downloadFile/VD-1650X450_VICOBA%201.webp"
             max-height="70"
             max-width="200"
-            src="/mkoba.png"
+            src="https://elirehema.github.io/mcapp/mkoba.png"
           />
         </v-list-item>
       </v-list>

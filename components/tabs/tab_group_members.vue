@@ -10,7 +10,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title class="font-weight-bold text-h4">
+        <v-toolbar-title class="font-weight-medium">
           Group Members
         </v-toolbar-title>
         <v-spacer />

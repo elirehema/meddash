@@ -62,7 +62,7 @@ export default {
   },
   head () {
     return {
-      title: 'Organizations'
+      title: 'Groups'
     }
   },
   computed: {

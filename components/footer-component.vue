@@ -2,8 +2,8 @@
   <v-container>
     <v-footer app>
       <v-spacer />
-      <span class="mr-8">Version: 22.04.24.0596</span>
-      <span>CopyRight &copy; {{ new Date().getFullYear() }} Ngazi Technologies</span>
+      <span class="mr-8 text-caption">Version: 23.04.05.0119</span>
+      <span class="text-caption">CopyRight &copy; {{ new Date().getFullYear() }} Ngazi Technologies</span>
     </v-footer>
   </v-container>
 </template>

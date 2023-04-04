@@ -16,15 +16,12 @@
         </v-list-item>
 
         <v-list-item v-else link>
-          <v-list-item-avatar color="whitish">
-            <v-img :src="miniUrl" class="vuetify-logo" />
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title class="text-h6">
-              NgaziTech Platform
-            </v-list-item-title>
-            <v-list-item-subtitle>Transactions management</v-list-item-subtitle>
-          </v-list-item-content>
+          <v-img
+            lazy-src="https://myvodacom.vodacom.co.tz/assets/myvodacom/downloadFile/VD-1650X450_VICOBA%201.webp"
+            max-height="70"
+            max-width="200"
+            src="/mkoba.png"
+          />
         </v-list-item>
       </v-list>
 
@@ -65,7 +62,28 @@
       app
       color="bg"
       flat
-    />
+    >
+    <v-spacer />
+    <v-btn fab small class="mr-1" icon>
+      <v-icon color="primary">mdi-help-circle-outline</v-icon>
+    </v-btn>
+    <v-btn fab small class="mr-5" icon>
+      <v-icon color="primary">mdi-bell-badge-outline</v-icon>
+    </v-btn>
+    <v-badge
+        bordered
+        bottom
+        color="success"
+        dot
+        offset-x="10"
+        offset-y="10"
+      >
+        <v-avatar size="40">
+          <v-img src="https://whatsondisneyplus.com/wp-content/uploads/2021/12/merida-avatar-wodp.png"></v-img>
+        </v-avatar>
+      </v-badge>
+    </v-app-bar>
+    
     <v-main>
       <v-container class="ma-2" height="100%" fluid>
         <nuxt />

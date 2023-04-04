@@ -62,12 +62,12 @@ export default {
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: ['Members', 'Transactions', 'Bank Account', 'Leaders', 'Users']
+      items: ['Members', 'Transactions']
     }
   },
   head () {
     return {
-      title: 'View Organization'
+      title: 'Group'
     }
   },
   computed: {

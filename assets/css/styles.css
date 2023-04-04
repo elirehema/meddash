@@ -124,4 +124,17 @@ button span.v-btn__content {
   font-weight: bold;
   color: white;
   text-decoration-color: white;
+}
+
+th, td {
+  text-align: left;
+  padding: 0px;
+}
+
+table, tr, td {
+  border: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #FFF8E1;
 }/*# sourceMappingURL=styles.css.map */

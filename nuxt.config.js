@@ -10,7 +10,7 @@ export default {
   target: 'static',
   router: {
     mode: 'hash',
-    base: '/subway/',
+    base: isDev ? '' : '/mcapp/',
     routerNameSplitter: '/',
     middleware: ['router']
   },
@@ -33,7 +33,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: process.env.DEPLOY_ENV === 'prod' ? '/subway/favicon.ico' : '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: isDev ? '/favicon.ico' : '/mcapp/favicon.ico' }
     ]
   },
 
@@ -70,22 +70,12 @@ export default {
     '@nuxtjs/axios'
   ],
 
-  /**
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    proxy: true
-  },
-  proxy: {
-    '/api/': { target: 'http://155.12.30.14:8082/api/v1', pathRewrite: { '^/api/': '' } }
-  },
-  **/
+ 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     /*
      ** You can extend webpack config here
      */
-    publicPath: process.env.NODE_ENV === 'prod' ? '/subway/' : '/subway/',
     extend (config, ctx) { },
     postcss: {
       preset: {

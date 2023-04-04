@@ -49,7 +49,7 @@
         </v-list-item>
       </v-list>
       <template #append>
-        <div class="pa-2">
+        <div v-if="false" class="pa-2">
           <v-btn block rounded color="warning" @click="$store.dispatch('_logoutsession')">
             <v-icon left>
               mdi-logout-variant

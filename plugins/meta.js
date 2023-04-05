@@ -1,8 +1,8 @@
 const type = 'website'
 const url = 'https://www.ngazi.co.tz/'
-const title = 'Ngazi Technologies'
-const description = 'Organization Transaction Management System Administrator Dashboard'
-const mainImage = 'https://arctype.com/blog/content/images/2021/10/mysql-transactions.jpg'
+const title = 'M-Koba'
+const description = 'A new digital form of saving that provides security of the groups’ money, transparency and simplicity for members to contribute from anywhere through Vodacom M-Pesa.'
+const mainImage = 'https://pbs.twimg.com/media/D0f-6dDXcAAKmih.png'
 
 export default (meta) => {
   return [

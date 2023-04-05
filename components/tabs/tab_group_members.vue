@@ -5,6 +5,7 @@
     :items="members"
     sort-by="calories"
     class="elevation-1"
+    @click:row="rowclick"
   >
     <template #top>
       <v-toolbar
@@ -65,6 +66,7 @@ export default {
     headers: [
 
       { text: 'Name', value: 'name' },
+      { text: 'MSISDN ', value: 'msisdn' },
       { text: 'Role', value: 'role' },
       { text: 'Status ', value: 'status' },
       { text: 'Deposits ', value: 'deposits' },
@@ -76,6 +78,13 @@ export default {
       { text: 'S.F Withdraws', value: 'socialfundWithdraws' },
       { text: 'Created Date', value: 'created' }
     ]
-  })
+  }),
+  methods:{
+    rowclick (v) {
+      this.show = true
+      this.$router.push(`/members/${v.msisdn}`)
+      // console.log(v)
+    }
+  }
 }
 </script>

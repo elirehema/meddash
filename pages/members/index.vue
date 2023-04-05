@@ -3,10 +3,11 @@
     v-if="members"
     :headers="headers"
     :items="members"
-    item-key="name"
+    item-key="createdDate"
     class="elevation-1"
     :footer-props="footerprops"
     :server-items-length="pages"
+    @click:row="rowclick"
     @pagination="paginate"
   >
     <template #top>
@@ -42,7 +43,8 @@ export default {
       pages: 0,
       headers: [
         { text: 'Name ', value: 'name' },
-        { text: 'Account #', value: 'account' },
+        { text: 'MSISDN ', value: 'msisdn' },
+        { text: 'Role', value: 'role' },
         { text: 'Status ', value: 'status' },
         { text: 'Deposits ', value: 'deposits' },
         { text: 'Dividends ', value: 'dividend' },
@@ -64,8 +66,13 @@ export default {
     this.paginate({ page: 0, itemsPerPage: 15 })
   },
   methods: {
+    rowclick (v) {
+      this.show = true
+      this.$router.push(`/members/${v.msisdn}`)
+      // console.log(v)
+    },
     async paginate (it) {
-      await this.$api.$get('/members', { params: { page: it.page, size: it.itemsPerPage, sort: 'memberid desc' } })
+      await this.$api.$get('/members', { params: { page: it.page, size: it.itemsPerPage, sort: 'memberid  asc' } })
         .then((response) => {
           this.pages = response.totalRows
           this.page = response.currentPage

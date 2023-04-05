@@ -1,12 +1,12 @@
 
 <template>
-  <v-card v-if="group" flat>
+  <v-card v-if="member" flat>
     <v-app-bar
       fade-img-on-scroll
       scroll-threshold="500"
     >
       <v-toolbar-title class=" font-weight-medium">
-        {{ group.name }}
+        {{ member.name }} {{ member.familyName }}
       </v-toolbar-title>
 
       <v-spacer />
@@ -40,40 +40,35 @@
     </v-tabs-items>
     <v-tabs-items v-model="tab">
       <v-tab-item>
-        <tab-group-members :members="members" @update="_getGroupMembers($event)" />
+        <tab-member-groups :groups="groups" :member="member" />
       </v-tab-item>
-      <v-tab-item>
-        <tab-group-transactions />
-      </v-tab-item>
+     
     </v-tabs-items>
   </v-card>
 
   <skeleton-table-loader v-else />
 </template>
 <script>
-import TabGroupMembers from '@/components/tabs/tab_group_members.vue'
-
-import TabGroupTransactions from '@/components/tabs/tab_group_transactions.vue'
+import TabMemberGroups from '@/components/tabs/tab_member_groups.vue'
 export default {
   components: {
-    'tab-group-members': TabGroupMembers,
-    'tab-group-transactions': TabGroupTransactions
+    'tab-member-groups': TabMemberGroups,
   },
   data () {
     return {
-      group: null,
-      members: [],
+      member: null,
+      groups: null,
       tab: null,
       editedIndex: -1,
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: ['Members', 'Transactions']
+      items: ['Groups', 'Transactions']
     }
   },
   head () {
     return {
-      title: 'Group'
+      title: 'Member'
     }
   },
   computed: {
@@ -82,24 +77,24 @@ export default {
     }
   },
   created () {
-    this._getgroupById()
-    this._getGroupMembers()
+    this._getgMemberById()
   },
   methods: {
-    async _getgroupById () {
+    async _getgMemberById () {
       await await this.$api
-        .$get(`/groups/${this.$route.params.id}`)
+        .$get(`/members/${this.$route.params.id}`)
         .then((response) => {
-          this.group = response
+          this.member = response
+          this._getMemberGroups()
         })
         .catch(() => {
         })
     },
-    async _getGroupMembers () {
+    async _getMemberGroups () {
       await await this.$api
-        .$get(`/groups/${this.$route.params.id}/members`)
+        .$get(`/members/${this.member.msisdn}/groups`)
         .then((response) => {
-          this.members = response
+          this.groups = response == null ? [] : response
         })
         .catch(() => {
         })

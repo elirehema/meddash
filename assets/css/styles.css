@@ -126,6 +126,12 @@ button span.v-btn__content {
   text-decoration-color: white;
 }
 
+.v-data-footer button span.v-btn__content {
+  font-weight: bold;
+  color: #a470fd !important;
+  text-decoration-color: white;
+}
+
 th, td {
   text-align: left;
   padding: 0px;

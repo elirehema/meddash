@@ -10,7 +10,10 @@
         :items="groups"
         item-key="name"
         class="elevation-1"
+        :footer-props="footerprops"
+        :server-items-length="pages"
         @click:row="rowclick"
+        @pagination="paginate"
       >
         <template #top>
           <v-toolbar
@@ -44,10 +47,11 @@
   <skeleton-table-loader v-else />
 </template>
 <script>
-import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
+      groups: null,
+      pages: 0,
       headers: [
         { text: 'Name', value: 'name' },
         { text: 'Group Type ', value: 'groupType' },
@@ -65,19 +69,24 @@ export default {
       title: 'Groups'
     }
   },
-  computed: {
-    ...mapGetters({
-      groups: 'groups'
-    })
-  },
   created () {
-    this.$store.dispatch('_fetchgroups')
+    this.paginate({ page: 0, itemsPerPage: 15 })
   },
   methods: {
     rowclick (v) {
       this.show = true
       this.$router.push(`/groups/${v.id}`)
       // console.log(v)
+    },
+
+    async paginate (it) {
+      await this.$api.$get('/groups', { params: { page: it.page, size: it.itemsPerPage, sort: 'groupid desc' } })
+        .then((response) => {
+          this.pages = response.totalRows
+          this.page = response.currentPage
+          this.groups = response.results
+        }).catch((_err) => {
+        })
     }
   }
 

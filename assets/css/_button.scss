@@ -7,3 +7,14 @@ button{
     }
     }
 }
+.v-data-footer{
+    & button{
+        & span{
+        &.v-btn__content{
+            font-weight: bold;
+            color: $button !important;
+            text-decoration-color: white;
+        }
+        }
+    }
+}

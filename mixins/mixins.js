@@ -7,7 +7,10 @@ const mixins = {
   },
   data () {
     return {
-      delay: 3000
+      delay: 3000,
+      footerprops: {
+        'items-per-page-options': [5, 10, 20, 30, 40, 50, 10]
+      }
     }
   },
   methods: {},

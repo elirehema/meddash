@@ -125,6 +125,11 @@ export default {
           to: '/groups'
         },
         {
+          title: 'Members',
+          icon: 'account-group-outline',
+          to: '/members'
+        },
+        {
           title: 'Accounts',
           icon: 'bank-outline',
           to: '/accounts'

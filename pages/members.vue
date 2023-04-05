@@ -1,8 +1,8 @@
 <template>
   <v-data-table
-    v-if="accounts"
+    v-if="members"
     :headers="headers"
-    :items="accounts"
+    :items="members"
     item-key="name"
     class="elevation-1"
     :footer-props="footerprops"
@@ -12,7 +12,7 @@
     <template #top>
       <v-toolbar flat>
         <v-toolbar-title class=" font-weight-medium">
-          Accounts
+          Group Members
         </v-toolbar-title>
         <v-spacer />
       </v-toolbar>
@@ -20,25 +20,25 @@
     <template #item.created="{item}">
       <span>{{ item.createdDate | dateformat }}</span>
     </template>
+    <template #item.name="{item}">
+      <span>{{ item.name.split(" ")[0] + " "+ item.familyName.split(" ")[0] }}</span>
+    </template>
     <template #item.status="{ item }">
-      <v-chip small :color="item.status == 'ACTIVE' ? 'success':''">
-        <v-avatar v-if="item.status == 'ACTIVE'" left>
-          <v-icon small>
-            mdi-checkbox-marked-circle
-          </v-icon>
-        </v-avatar>
-        {{ item.status }}
-      </v-chip>
+      <v-icon v-if="item.status == 'ACTIVE'" small>
+        mdi-checkbox-marked-circle
+      </v-icon>
+      <v-icon v-else small>
+        mdi-close-circle
+      </v-icon>
     </template>
   </v-data-table>
   <skeleton-table-loader v-else />
 </template>
 <script>
-import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      accounts: null,
+      members: null,
       pages: 0,
       headers: [
         { text: 'Name ', value: 'name' },
@@ -57,7 +57,7 @@ export default {
   },
   head () {
     return {
-      title: 'Accounts'
+      title: 'Members'
     }
   },
   created () {
@@ -65,11 +65,11 @@ export default {
   },
   methods: {
     async paginate (it) {
-      await this.$api.$get('/accounts', { params: { page: it.page, size: it.itemsPerPage, sort: 'groupid desc' } })
+      await this.$api.$get('/members', { params: { page: it.page, size: it.itemsPerPage, sort: 'memberid desc' } })
         .then((response) => {
           this.pages = response.totalRows
           this.page = response.currentPage
-          this.accounts = response.results
+          this.members = response.results
         }).catch((_err) => {
         })
     }

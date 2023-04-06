@@ -128,11 +128,6 @@ export default {
           title: 'Members',
           icon: 'account-group-outline',
           to: '/members'
-        },
-        {
-          title: 'Accounts',
-          icon: 'bank-outline',
-          to: '/accounts'
         }
       ],
       miniVariant: false,

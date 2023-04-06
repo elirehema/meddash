@@ -39,6 +39,9 @@
       </v-tab-item>
     </v-tabs-items>
     <v-tabs-items v-model="tab">
+    <v-tab-item>
+    <tab-group-account/>
+    </v-tab-item>
       <v-tab-item>
         <tab-group-members :members="members" @update="_getGroupMembers($event)" />
       </v-tab-item>
@@ -52,12 +55,13 @@
 </template>
 <script>
 import TabGroupMembers from '@/components/tabs/tab_group_members.vue'
-
+import TabGroupAccount from '@/components/tabs/tab_group_account.vue'
 import TabGroupTransactions from '@/components/tabs/tab_group_transactions.vue'
 export default {
   components: {
     'tab-group-members': TabGroupMembers,
-    'tab-group-transactions': TabGroupTransactions
+    'tab-group-transactions': TabGroupTransactions,
+    'tab-group-account': TabGroupAccount,
   },
   data () {
     return {
@@ -68,7 +72,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: ['Members', 'Transactions']
+      items: ['Account', 'Members', 'Transactions']
     }
   },
   head () {

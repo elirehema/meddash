@@ -5,6 +5,8 @@
     :items="members"
     item-key="createdDate"
     class="elevation-1"
+    :loading="loading"
+    loading-text="Loading... Please wait"
     :footer-props="footerprops"
     :server-items-length="pages"
     @click:row="rowclick"
@@ -16,6 +18,20 @@
           Group Members
         </v-toolbar-title>
         <v-spacer />
+        <v-text-field
+          prepend-inner-icon="mdi-magnify"
+          label="Search member by name, MSISDN"
+          single-line
+          hide-details
+          outlined
+          filled
+          height="40"
+          dense
+          class="search mr-2"
+          clearable
+          autocomplete="off"
+          @input="filterfromdatabase"
+        />
       </v-toolbar>
     </template>
     <template #item.created="{item}">
@@ -41,6 +57,7 @@ export default {
     return {
       members: null,
       pages: 0,
+      loading: false,
       headers: [
         { text: 'Name ', value: 'name' },
         { text: 'MSISDN ', value: 'msisdn' },
@@ -71,8 +88,19 @@ export default {
       this.$router.push(`/members/${v.msisdn}`)
       // console.log(v)
     },
+    async filterfromdatabase (value) {
+      this.loading = true
+      await this.$api.$get('/members/search', { params: { page: 0, size: 5, sort: 'name asc', search: value } })
+        .then((response) => {
+          this.loading = false
+         /// this.pages = response.totalRows
+          this.page = response.currentPage
+          this.members = response.results
+        }).catch((_err) => {
+        })
+    },
     async paginate (it) {
-      await this.$api.$get('/members', { params: { page: it.page, size: it.itemsPerPage, sort: 'memberid  asc' } })
+      await this.$api.$get('/members', { params: { page: it.page, size: it.itemsPerPage, sort: 'name desc' } })
         .then((response) => {
           this.pages = response.totalRows
           this.page = response.currentPage

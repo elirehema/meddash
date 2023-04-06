@@ -143,4 +143,9 @@ table, tr, td {
 
 tr:nth-child(even) {
   background-color: #FFF8E1;
+}
+
+.v-input.search {
+  max-width: 500px !important;
+  align-content: flex-start !important;
 }/*# sourceMappingURL=styles.css.map */

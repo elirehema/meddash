@@ -5,6 +5,7 @@
     :items="groups"
     item-key="name"
     class="elevation-1"
+    @click:row="rowclick"
   >
     <template #top>
       <v-toolbar
@@ -60,6 +61,11 @@ export default {
       ],
       show: false,
       editedItem: {}
+    }
+  },
+  methods:{
+    rowclick (v) {
+      this.$router.push(`/groups/${v.id}/${this.$route.params.id}`)
     }
   }
 }

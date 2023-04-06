@@ -20,7 +20,7 @@
             flat
           >
             <v-toolbar-title class=" font-weight-mediumm  text-uppercase">
-              {{member.name }} {{member.familyName}} Transactions in  Group <strong>{{ group.name }}</strong>
+              {{member.name }} {{member.familyName}} Loans in  Group <strong>{{ group.name }}</strong>
             </v-toolbar-title>
             <v-spacer />
           </v-toolbar>

@@ -40,7 +40,10 @@
     </v-tabs-items>
     <v-tabs-items v-model="tab">
       <v-tab-item>
-        <tab-member-transactions :member="member" :group="group"/>
+        <tab-member-transactions :member="member" :group="group" />
+      </v-tab-item>
+      <v-tab-item>
+        <tab-member-loans :member="member" :group="group" />
       </v-tab-item>
     </v-tabs-items>
   </v-card>
@@ -49,9 +52,11 @@
 </template>
 <script>
 import TabMemberTransactions from '@/components/tabs/tab_member_transactions.vue'
+import TabMemberLoans from '@/components/tabs/tab_member_loans.vue'
 export default {
   components: {
-    'tab-member-transactions': TabMemberTransactions
+    'tab-member-transactions': TabMemberTransactions,
+    'tab-member-loans': TabMemberLoans
   },
   data () {
     return {
@@ -62,7 +67,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: ['Transactions']
+      items: ['Transactions', 'Loans']
     }
   },
   head () {
@@ -92,8 +97,8 @@ export default {
         })
         .catch(() => {
         })
-    },
-   
+    }
+
   }
 }
 </script>

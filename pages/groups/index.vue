@@ -10,6 +10,8 @@
         :items="groups"
         item-key="name"
         class="elevation-1"
+        :loading="loading"
+        loading-text="Loading... Please wait"
         :footer-props="footerprops"
         :server-items-length="pages"
         @click:row="rowclick"
@@ -24,10 +26,27 @@
               Groups
             </v-toolbar-title>
             <v-spacer />
+            <v-text-field
+              prepend-inner-icon="mdi-magnify"
+              label="Search group by name, id"
+              single-line
+              hide-details
+              outlined
+              filled
+              height="40"
+              dense
+              class="search mr-2"
+              clearable
+              autocomplete="off"
+              @input="filterfromdatabase"
+            />
           </v-toolbar>
         </template>
         <template #item.created="{item}">
           <span>{{ item.createdDate | dateformat }}</span>
+        </template>
+        <template #item.id="{item}">
+          <v-chip small color="grey" class="white--text">{{ item.id }}</v-chip>
         </template>
         <template #item.status="{ item }">
           <v-chip :color="item.status == 'ACTIVE' ? 'success':''">
@@ -51,9 +70,12 @@ export default {
   data () {
     return {
       groups: null,
+      search: '',
       pages: 0,
+      loading: false,
       headers: [
         { text: 'Name', value: 'name' },
+        { text: 'Group ID', value: 'id' },
         { text: 'Group Type ', value: 'groupType' },
         { text: 'Location', value: 'location' },
         { text: 'Members', value: 'members' },
@@ -77,6 +99,17 @@ export default {
       this.show = true
       this.$router.push(`/groups/${v.id}`)
       // console.log(v)
+    },
+    async filterfromdatabase (value) {
+      this.loading = true
+      await this.$api.$get('/groups/search', { params: { page: 0, size: 5, sort: 'groupid desc', search: value } })
+        .then((response) => {
+          this.loading = false
+          this.pages = response.totalRows
+          this.page = response.currentPage
+          this.groups = response.results
+        }).catch((_err) => {
+        })
     },
 
     async paginate (it) {

@@ -33,7 +33,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                v-if="item.sms == '-1'"
+                v-if="item.sms == '-1' || item.sms === ''"
                 disabled
                 v-bind="attrs"
                 color="button darken-2"

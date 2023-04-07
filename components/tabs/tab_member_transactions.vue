@@ -12,6 +12,7 @@
         class="elevation-1"
         :footer-props="footerprops"
         :server-items-length="pages"
+        @click:row="rowclick"
         @pagination="paginate"
       >
         <template #top>
@@ -20,18 +21,32 @@
             flat
           >
             <v-toolbar-title class=" font-weight-mediumm  text-uppercase">
-              {{member.name }} {{member.familyName}} Transactions in  Group <strong>{{ group.name }}</strong>
+              All of <strong>{{member.name }} {{member.familyName}} </strong>Transactions
             </v-toolbar-title>
             <v-spacer />
           </v-toolbar>
         </template>
-        <template #item.created="{item}">
-          <span>{{ item.transactionDate | dateformat }}</span>
+        <template #item.type="{item}">
+          <span>{{ item.transactionType.type }}-({{ item.transactionType.flag }})</span>
+        </template>
+        <template #item.destination="{item}">
+          <span v-if="item.destinationAccount != '-1'">{{ item.destinationAccount }}</span>
+          <span v-else class="grey--text"> Not Provided </span>
         </template>
         <template #item.sms="{ item }">
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
+                v-if="item.sms == '-1'"
+                disabled
+                v-bind="attrs"
+                color="button darken-2"
+                v-on="on"
+              >
+                mdi-message-badge-outline
+              </v-icon>
+              <v-icon
+                v-else
                 v-bind="attrs"
                 color="button darken-2"
                 v-on="on"
@@ -45,42 +60,6 @@
         <template #no-data>
           <span>No transaction found ...</span>
         </template>
-        <template v-if="false" #footer>
-          <v-simple-table style="background-color: #eeeeee;" dark>
-            <tbody>
-              <tr>
-                <td class="font-weight-bold button--text">
-                  S.B.B
-                </td>
-                <td class="black--text">
-                  Source Balance Before
-                </td>
-
-                <td class="font-weight-bold button--text">
-                  S.B.A
-                </td>
-                <td class="black--text">
-                  Source Balance After
-                </td>
-              </tr>
-              <tr style="background-color: #eeeeee ;">
-                <td class="font-weight-bold button--text">
-                  D.B.B
-                </td>
-                <td class="black--text">
-                  Destination Balance Before
-                </td>
-
-                <td class="font-weight-bold button--text">
-                  D.B.A
-                </td>
-                <td class="black--text">
-                  Destination Balance After
-                </td>
-              </tr>
-            </tbody>
-          </v-simple-table>
-        </template>
       </v-data-table>
     </v-col>
   </v-row>
@@ -89,12 +68,8 @@
 </template>
 <script>
 export default {
-  props:{
-    group:{
-      type: Object,
-      default: null
-    },
-    member:{
+  props: {
+    member: {
       type: Object,
       default: null
     }
@@ -106,14 +81,13 @@ export default {
       headers: [
         { text: 'MSISDN', value: 'msisdn' },
         { text: 'Source ', value: 'sourceAccount' },
-        { text: 'Destination', value: 'destinationAccount' },
+        { text: 'Destination', value: 'destination' },
         { text: 'Amount', value: 'amount' },
-        { text: 'S.B.B ', value: 'sourceBalanceBefore' },
-        { text: 'S.B.A ', value: 'sourceBalanceAfter' },
-        { text: 'D.B.B ', value: 'destinationBalanceBefore' },
-        { text: 'D.B.A ', value: 'destinationBalanceAfter' },
+        { text: 'Receipt ', value: 'receipt' },
+        { text: 'Transaction Type ', value: 'type' },
         { text: 'SMS', value: 'sms' },
-        { text: 'Created Date', value: 'created' }
+        { text: 'Transaction Date', value: 'transactionDate' }
+
 
       ],
       show: false,
@@ -136,7 +110,7 @@ export default {
     },
 
     async paginate (it) {
-      await this.$api.$get('/members/transactions', { params: { page: it.page, size: it.itemsPerPage, sort: 'transid desc', msisdn: this.$route.params.memberid, gid: this.$route.params.id } })
+      await this.$api.$get(`/members/${this.$route.params.id}/transactions`, { params: { page: it.page, size: it.itemsPerPage, sort: 'transid desc' } })
         .then((response) => {
           this.pages = response.totalRows
           this.page = response.currentPage

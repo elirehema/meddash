@@ -6,7 +6,7 @@
       scroll-threshold="500"
     >
       <v-toolbar-title class=" font-weight-medium">
-        {{ member.name }} {{ member.familyName }}
+        MEMBER: {{ member.name }} {{ member.familyName }}
       </v-toolbar-title>
 
       <v-spacer />
@@ -42,7 +42,9 @@
       <v-tab-item>
         <tab-member-groups :groups="groups" :member="member" />
       </v-tab-item>
-     
+      <v-tab-item>
+        <tab-member-transactions :member="member" />
+      </v-tab-item>
     </v-tabs-items>
   </v-card>
 
@@ -50,9 +52,11 @@
 </template>
 <script>
 import TabMemberGroups from '@/components/tabs/tab_member_groups.vue'
+import TabMemberTransactions from '@/components/tabs/tab_member_transactions.vue'
 export default {
   components: {
     'tab-member-groups': TabMemberGroups,
+    'tab-member-transactions': TabMemberTransactions
   },
   data () {
     return {

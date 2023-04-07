@@ -6,7 +6,7 @@
       scroll-threshold="500"
     >
       <v-toolbar-title class=" font-weight-medium">
-        {{ group.name }}
+        GROUP: {{ group.name }}
       </v-toolbar-title>
 
       <v-spacer />

@@ -142,7 +142,7 @@ table, tr, td {
 }
 
 tr:nth-child(even) {
-  background-color: #FFF8E1;
+  background-color: #E0F2F1;
 }
 
 .v-input.search {

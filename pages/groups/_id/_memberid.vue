@@ -40,7 +40,7 @@
     </v-tabs-items>
     <v-tabs-items v-model="tab">
       <v-tab-item>
-        <tab-member-transactions :member="member" :group="group" />
+        <tab-member-group-transactions :member="member" :group="group" />
       </v-tab-item>
       <v-tab-item>
         <tab-member-loans :member="member" :group="group" />
@@ -51,11 +51,11 @@
   <skeleton-table-loader v-else />
 </template>
 <script>
-import TabMemberTransactions from '@/components/tabs/tab_member_transactions.vue'
+import TabMemberGroupTransactions from '~/components/tabs/tab_member_group_transactions.vue'
 import TabMemberLoans from '@/components/tabs/tab_member_loans.vue'
 export default {
   components: {
-    'tab-member-transactions': TabMemberTransactions,
+    'tab-member-group-transactions': TabMemberGroupTransactions,
     'tab-member-loans': TabMemberLoans
   },
   data () {

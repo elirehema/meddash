@@ -32,15 +32,15 @@
           :key="child.title"
           :to="child.to"
           link
-          color="button"
+          color="white"
           class="pl-4"
         >
           <v-list-item-icon>
-            <v-icon>{{ 'mdi-'+ child.icon }}</v-icon>
+            <v-icon color="white">{{ 'mdi-'+ child.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>
-              <span class="font-weight-medium">{{ child.title }}</span>
+              <span class="font-weight-medium white--text">{{ child.title }}</span>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -63,14 +63,18 @@
       color="bg"
       flat
     >
-    <v-spacer />
-    <v-btn fab small class="mr-1" icon>
-      <v-icon color="primary">mdi-help-circle-outline</v-icon>
-    </v-btn>
-    <v-btn fab small class="mr-5" icon>
-      <v-icon color="primary">mdi-bell-badge-outline</v-icon>
-    </v-btn>
-    <v-badge
+      <v-spacer />
+      <v-btn fab small class="mr-1" icon>
+        <v-icon color="white">
+          mdi-help-circle-outline
+        </v-icon>
+      </v-btn>
+      <v-btn fab small class="mr-5" icon>
+        <v-icon color="white">
+          mdi-bell-badge-outline
+        </v-icon>
+      </v-btn>
+      <v-badge
         bordered
         bottom
         color="success"
@@ -79,11 +83,11 @@
         offset-y="10"
       >
         <v-avatar size="40">
-          <v-img src="https://whatsondisneyplus.com/wp-content/uploads/2021/12/merida-avatar-wodp.png"></v-img>
+          <v-img src="https://whatsondisneyplus.com/wp-content/uploads/2021/12/merida-avatar-wodp.png" />
         </v-avatar>
       </v-badge>
     </v-app-bar>
-    
+
     <v-main>
       <v-container class="ma-2" height="100%" fluid>
         <nuxt />
@@ -128,6 +132,10 @@ export default {
           title: 'Members',
           icon: 'account-group-outline',
           to: '/members'
+        },
+        {
+          title: 'Reports',
+          icon: 'file-chart'
         }
       ],
       miniVariant: false,

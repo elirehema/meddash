@@ -46,10 +46,10 @@
           <span>{{ item.createdDate | dateformat }}</span>
         </template>
         <template #item.id="{item}">
-          <v-chip small color="grey" class="white--text">{{ item.id }}</v-chip>
+          <v-chip small color="bg lighten-2" class="white--text">{{ item.id }}</v-chip>
         </template>
         <template #item.status="{ item }">
-          <v-chip :color="item.status == 'ACTIVE' ? 'success':''">
+          <v-chip dark :color="item.status == 'ACTIVE' ? 'green':'success'">
             <v-avatar v-if="item.status == 'ACTIVE'" left>
               <v-icon>mdi-checkbox-marked-circle</v-icon>
             </v-avatar>
@@ -76,7 +76,7 @@ export default {
       headers: [
         { text: 'Name', value: 'name' },
         { text: 'Group ID', value: 'id' },
-        { text: 'Group Type ', value: 'groupType' },
+        { text: 'Group Type ', value: 'type.type' },
         { text: 'Location', value: 'location' },
         { text: 'Members', value: 'members' },
         { text: 'Status ', value: 'status' },

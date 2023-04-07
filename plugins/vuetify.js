@@ -28,7 +28,7 @@ export default (ctx) => {
           info: '#2196F3',
           warning: '#FB8C00',
           error: '#FF0000',
-          bg: '#f3f2f9',
+          bg: '#006666',
           button: '#a470fd'
         }
 

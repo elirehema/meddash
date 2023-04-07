@@ -13,7 +13,7 @@
         flat
       >
         <v-toolbar-title class=" font-weight-medium">
-          Groups
+         {{ member.name }} {{member.familyName }} Groups
         </v-toolbar-title>
         <v-spacer />
       </v-toolbar>
@@ -22,9 +22,9 @@
       <span>{{ item.createdDate | dateformat }}</span>
     </template>
     <template #item.status="{ item }">
-      <v-chip :color="item.status == 'ACTIVE' ? 'success':''">
+      <v-chip dark class="font-weight-bold" :color="item.status == 'ACTIVE' ? 'green':'success'">
         <v-avatar v-if="item.status == 'ACTIVE'" left>
-          <v-icon>mdi-checkbox-marked-circle</v-icon>
+          <v-icon small>mdi-checkbox-marked-circle</v-icon>
         </v-avatar>
         {{ item.status.toLowerCase() }}
       </v-chip>

@@ -12,6 +12,7 @@
         class="elevation-1"
         :footer-props="footerprops"
         :server-items-length="pages"
+        @click:row="rowclick"
         @pagination="paginate"
       >
         <template #top>
@@ -25,13 +26,27 @@
             <v-spacer />
           </v-toolbar>
         </template>
-        <template #item.created="{item}">
-          <span>{{ item.transactionDate | dateformat }}</span>
+        <template #item.type="{item}">
+          <span>{{ item.transactionType.type }}-({{ item.transactionType.flag }})</span>
+        </template>
+        <template #item.destination="{item}">
+          <span v-if="item.destinationAccount != '-1'">{{ item.destinationAccount }}</span>
+          <span v-else class="grey--text"> Not Provided </span>
         </template>
         <template #item.sms="{ item }">
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
+                v-if="item.sms == '-1'"
+                disabled
+                v-bind="attrs"
+                color="button darken-2"
+                v-on="on"
+              >
+                mdi-message-badge-outline
+              </v-icon>
+              <v-icon
+                v-else
                 v-bind="attrs"
                 color="button darken-2"
                 v-on="on"
@@ -96,14 +111,12 @@ export default {
       headers: [
         { text: 'MSISDN', value: 'msisdn' },
         { text: 'Source ', value: 'sourceAccount' },
-        { text: 'Destination', value: 'destinationAccount' },
+        { text: 'Destination', value: 'destination' },
         { text: 'Amount', value: 'amount' },
-        { text: 'S.B.B ', value: 'sourceBalanceBefore' },
-        { text: 'S.B.A ', value: 'sourceBalanceAfter' },
-        { text: 'D.B.B ', value: 'destinationBalanceBefore' },
-        { text: 'D.B.A ', value: 'destinationBalanceAfter' },
+        { text: 'Receipt ', value: 'receipt' },
+        { text: 'Transaction Type ', value: 'type' },
         { text: 'SMS', value: 'sms' },
-        { text: 'Created Date', value: 'created' }
+        { text: 'Transaction Date', value: 'transactionDate' }
 
       ],
       show: false,

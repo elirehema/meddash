@@ -42,7 +42,7 @@
       <span>{{ item.createdDate | dateformat }}</span>
     </template>
     <template #item.status="{ item }">
-      <v-chip small :color="item.status == 'ACTIVE' ? 'success':''">
+      <v-chip dark small :color="item.status == 'ACTIVE' ? 'green':'success'">
         <v-avatar v-if="item.status == 'ACTIVE'" left>
           <v-icon small>
             mdi-checkbox-marked-circle

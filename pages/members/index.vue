@@ -41,12 +41,12 @@
       <span>{{ item.name.split(" ")[0] + " "+ item.familyName.split(" ")[0] }}</span>
     </template>
     <template #item.status="{ item }">
-      <v-icon v-if="item.status == 'ACTIVE'" small>
-        mdi-checkbox-marked-circle
-      </v-icon>
-      <v-icon v-else small>
-        mdi-close-circle
-      </v-icon>
+      <v-chip dark :color="item.status == 'ACTIVE' ? 'green':'success'">
+        <v-avatar v-if="item.status == 'ACTIVE'" left>
+          <v-icon>mdi-checkbox-marked-circle</v-icon>
+        </v-avatar>
+        {{ item.status.toLowerCase() }}
+      </v-chip>
     </template>
   </v-data-table>
   <skeleton-table-loader v-else />
@@ -93,7 +93,7 @@ export default {
       await this.$api.$get('/members/search', { params: { page: 0, size: 5, sort: 'name asc', search: value } })
         .then((response) => {
           this.loading = false
-         /// this.pages = response.totalRows
+          /// this.pages = response.totalRows
           this.page = response.currentPage
           this.members = response.results
         }).catch((_err) => {

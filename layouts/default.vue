@@ -3,7 +3,7 @@
     <v-navigation-drawer
       :clipped="false"
       permanent
-      color="bg"
+      color="primary"
       app
       height="100%"
       style="max-height: 97.6%;"
@@ -60,7 +60,7 @@
       :clipped-left="clipped"
       fixed
       app
-      color="bg"
+      color="primary"
       flat
     >
       <v-spacer />

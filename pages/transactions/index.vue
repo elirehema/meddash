@@ -119,7 +119,7 @@
           </v-tooltip>
         </template>
         <template #item.member="{ item }">
-        <nuxt-link :to="`/members/${item.memberId}`">
+        <nuxt-link v-if="item.member != null" :to="`/members/${item.memberId}`">
             <span>{{ item.member.name }} {{ item.member.familyName == '-1' ? '':item.member.familyName }}</span>
         </nuxt-link>
         </template>

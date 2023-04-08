@@ -28,58 +28,14 @@
         <template #item.created="{item}">
           <span>{{ item.transactionDate | dateformat }}</span>
         </template>
-        <template #item.sms="{ item }">
-          <v-tooltip bottom>
-            <template #activator="{ on, attrs }">
-              <v-icon
-                v-bind="attrs"
-                color="button darken-2"
-                v-on="on"
-              >
-                mdi-message-badge
-              </v-icon>
-            </template>
-            <span>{{ item.sms }}</span>
-          </v-tooltip>
+        <template #item.status="{ item }">
+          <v-chip small color="warning">{{ item.loanStatus }}</v-chip>
         </template>
         <template #no-data>
           <span>No loan found ...</span>
         </template>
-        <template v-if="false" #footer>
-          <v-simple-table style="background-color: #eeeeee;" dark>
-            <tbody>
-              <tr>
-                <td class="font-weight-bold button--text">
-                  S.B.B
-                </td>
-                <td class="black--text">
-                  Source Balance Before
-                </td>
-
-                <td class="font-weight-bold button--text">
-                  S.B.A
-                </td>
-                <td class="black--text">
-                  Source Balance After
-                </td>
-              </tr>
-              <tr style="background-color: #eeeeee ;">
-                <td class="font-weight-bold button--text">
-                  D.B.B
-                </td>
-                <td class="black--text">
-                  Destination Balance Before
-                </td>
-
-                <td class="font-weight-bold button--text">
-                  D.B.A
-                </td>
-                <td class="black--text">
-                  Destination Balance After
-                </td>
-              </tr>
-            </tbody>
-          </v-simple-table>
+        <template #item.type="{item}">
+          <span>{{ item.loanType.type }}-({{ item.loanType.flag }})</span>
         </template>
       </v-data-table>
     </v-col>
@@ -105,15 +61,14 @@ export default {
       pages: 0,
       headers: [
         { text: 'MSISDN', value: 'msisdn' },
-        { text: 'Source ', value: 'sourceAccount' },
-        { text: 'Destination', value: 'destinationAccount' },
-        { text: 'Amount', value: 'amount' },
-        { text: 'S.B.B ', value: 'sourceBalanceBefore' },
-        { text: 'S.B.A ', value: 'sourceBalanceAfter' },
-        { text: 'D.B.B ', value: 'destinationBalanceBefore' },
-        { text: 'D.B.A ', value: 'destinationBalanceAfter' },
-        { text: 'SMS', value: 'sms' },
-        { text: 'Created Date', value: 'created' }
+        { text: 'Loan Amount', value: 'loanAmount' },
+        { text: 'Loan Balance', value: 'loanBalance' },
+        { text: 'Interest ', value: 'interest' },
+        { text: 'Loan Type ', value: 'type' },
+        { text: 'Loan Status ', value: 'status' },
+        { text: 'Loan Date', value: 'loanDate' },
+        { text: 'Last Repayment Date', value: 'lastRepaymentDate' },
+        { text: 'Due Date', value: 'loanDueDate' }
 
       ],
       show: false,

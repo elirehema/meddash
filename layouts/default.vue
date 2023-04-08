@@ -135,7 +135,8 @@ export default {
         },
         {
           title: 'Reports',
-          icon: 'file-chart'
+          icon: 'file-chart',
+          to: '/transactions'
         }
       ],
       miniVariant: false,

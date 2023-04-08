@@ -122,6 +122,7 @@
         <nuxt-link v-if="item.member != null" :to="`/members/${item.memberId}`">
             <span>{{ item.member.name }} {{ item.member.familyName == '-1' ? '':item.member.familyName }}</span>
         </nuxt-link>
+        <span v-else>No found</span>
         </template>
         <template #item.group="{ item }">
         <nuxt-link :to="`/groups/${item.groupId}`">

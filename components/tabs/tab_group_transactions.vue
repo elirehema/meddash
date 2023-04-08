@@ -125,7 +125,7 @@ export default {
   },
   head () {
     return {
-      title: 'transactions'
+      title: 'Transactions'
     }
   },
   created () {

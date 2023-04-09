@@ -89,13 +89,13 @@
       <v-badge
         bordered
         bottom
-        color="success"
+        color="blue lighten-1"
         dot
         offset-x="10"
         offset-y="10"
       >
-        <v-avatar size="40">
-          <v-img src="https://whatsondisneyplus.com/wp-content/uploads/2021/12/merida-avatar-wodp.png" />
+        <v-avatar size="56">
+          <v-img src="https://hindimarathisms.com/wp-content/uploads/2022/02/Cute-Girl-Cartoon-DP-300x300.jpg" />
         </v-avatar>
       </v-badge>
     </v-app-bar>

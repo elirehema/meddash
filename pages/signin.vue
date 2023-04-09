@@ -1,16 +1,7 @@
 <template>
   <v-form class="form-box" @submit.prevent="formSubmit">
     <v-container height="100%">
-      <v-row class="mt-0">
-        <v-col cols="12" sm="12" md="2">
-          <img
-            src="@/assets/images/logo.png"
-            alt="homepage"
-            width="160"
-            class="ml-2 dark-logo"
-          >
-        </v-col>
-      </v-row>
+   
 
       <div class="d-flex align-center justify-center mt-15">
         <v-row class="mt-0" no-gutters>
@@ -18,11 +9,11 @@
             <v-list color="transparent">
               <v-list-item three-line>
                 <v-list-item-content>
-                  <v-list-item-title class="text-sm-h4 text-md-h3 text-lg-h2 primary--text text-sm-center text-md-left">
-                    Ngazi Technologies
+                  <v-list-item-title class="text-sm-h4 text-md-h3 text-lg-h2 font-weight-black red--text text-sm-center text-md-left">
+                    M-Koba
                   </v-list-item-title>
-                  <v-list-item-subtitle class="mt-10 text-sm-h5 text-md-h4 text-lg-h4 black--text text-sm-center text-md-left">
-                    Lorem Ipsum dolor sit de amet cons
+                  <v-list-item-subtitle class="mt-10 text-sm-caption text-md-caption text-lg-h5 grey--text text-sm-center text-md-left">
+                    M-Koba self service web portal
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -35,7 +26,7 @@
                 <img
                   src="@/assets/images/logo.png"
                   alt="homepage"
-                  width="150px"
+                  width="100px"
                   class="ml-2 dark-logo"
                 >
               </v-card-title>
@@ -66,7 +57,7 @@
                     />
                   </v-col>
                   <v-col cols="12" class=" mt-5 d-flex justify-center">
-                    <v-btn block type="submit" color="button" dark>
+                    <v-btn block type="submit" color="primary" dark>
                       Continue
                       <v-icon right>
                         mdi-arrow-right-bold

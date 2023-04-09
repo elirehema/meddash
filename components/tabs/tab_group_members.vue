@@ -79,7 +79,7 @@ export default {
       { text: 'Created Date', value: 'created' }
     ]
   }),
-  methods:{
+  methods: {
     rowclick (v) {
       this.show = true
       this.$router.push(`/members/${v.msisdn}`)

@@ -66,12 +66,14 @@
       color="primary"
       flat
     >
-      <v-avatar size="62">
-        <img
-          src="https://elirehema.github.io/mcssa/m.png"
-          alt="M-Koba"
-        >
-      </v-avatar>
+      <nuxt-link to="/">
+        <v-avatar size="62">
+          <img
+            src="https://elirehema.github.io/mcssa/m.png"
+            alt="M-Koba"
+          >
+        </v-avatar>
+      </nuxt-link>
 
       <v-spacer />
       <v-btn fab small class="mr-1" icon>

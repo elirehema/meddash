@@ -69,7 +69,7 @@
       <nuxt-link to="/">
         <v-avatar size="62">
           <img
-            src="https://elirehema.github.io/mcssa/m.png"
+            src="https://elirehema.github.io/mcssa/v.png"
             alt="M-Koba"
           >
         </v-avatar>

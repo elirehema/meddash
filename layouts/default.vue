@@ -95,7 +95,7 @@
         offset-y="10"
       >
         <v-avatar size="56">
-          <v-img src="https://hindimarathisms.com/wp-content/uploads/2022/02/Cute-Girl-Cartoon-DP-300x300.jpg" />
+          <v-img src="https://img.freepik.com/premium-photo/beautiful-arabic-girl-with-scarf-blue-background_21730-3073.jpg?w=2000" />
         </v-avatar>
       </v-badge>
     </v-app-bar>

@@ -86,18 +86,40 @@
           mdi-bell-badge-outline
         </v-icon>
       </v-btn>
-      <v-badge
-        bordered
-        bottom
-        color="blue lighten-1"
-        dot
-        offset-x="10"
-        offset-y="10"
-      >
-        <v-avatar size="56">
-          <v-img src="https://img.freepik.com/premium-photo/beautiful-arabic-girl-with-scarf-blue-background_21730-3073.jpg?w=2000" />
-        </v-avatar>
-      </v-badge>
+      <v-menu transition="slide-y-transition" :rounded="'0'" offset-y>
+        <template #activator="{ on, attrs }">
+          <v-badge
+            bordered
+            bottom
+            color="blue lighten-1"
+            dot
+            offset-x="10"
+            offset-y="10"
+          >
+            <v-avatar
+              v-bind="attrs"
+              size="56"
+              v-on="on"
+            >
+              <v-img src="https://img.freepik.com/premium-photo/beautiful-arabic-girl-with-scarf-blue-background_21730-3073.jpg?w=2000" />
+            </v-avatar>
+          </v-badge>
+        </template>
+        <v-list dense>
+          <v-list-item
+            v-for="(item, index) in profile"
+            :key="index"
+            @click="_checkSelectedAction(item)"
+          >
+            <v-list-item-icon>
+              <v-icon color="primary">
+                {{ 'mdi-'+ item.icon }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
 
     <v-main>
@@ -129,6 +151,12 @@ export default {
       messages: 8,
       adv: 7,
       notifications: 1,
+      profile: [
+        {
+          title: 'Logout',
+          icon: 'logout-variant'
+        }
+      ],
       menus: [
         {
           title: 'Home',
@@ -157,6 +185,13 @@ export default {
       title: 'Vuetify.js',
       url: 'logo.png',
       miniUrl: 'logo.png'
+    }
+  },
+  methods: {
+    _checkSelectedAction (val) {
+      if (val.title === 'Logout') {
+        this.$store.dispatch('_logoutsession')
+      }
     }
   }
 

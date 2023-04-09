@@ -10,7 +10,7 @@ export default {
   target: 'static',
   router: {
     mode: 'hash',
-    base: isDev ? '' : '/mcapp/',
+    base: isDev ? '' : '/mcssa/',
     routerNameSplitter: '/',
     middleware: ['router']
   },
@@ -33,7 +33,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: isDev ? '/favicon.ico' : '/mcapp/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: isDev ? '/favicon.ico' : '/mcssa/favicon.ico' }
     ]
   },
 

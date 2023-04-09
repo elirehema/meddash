@@ -110,7 +110,7 @@ export default {
     },
 
     async paginate (it) {
-      await this.$api.$get(`/members/${this.$route.params.id}/transactions`, { params: { page: it.page, size: it.itemsPerPage, sort: 'transid desc' } })
+      await this.$api.$get(`/members/${this.msisdn}/transactions`, { params: { page: it.page, size: it.itemsPerPage, sort: 'transid desc' } })
         .then((response) => {
           this.pages = response.totalRows
           this.page = response.currentPage

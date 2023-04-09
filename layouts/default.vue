@@ -1,6 +1,7 @@
 <template>
   <v-app dark>
     <v-navigation-drawer
+      v-if="false"
       :clipped="false"
       permanent
       color="primary"
@@ -36,7 +37,9 @@
           class="pl-4"
         >
           <v-list-item-icon>
-            <v-icon color="white">{{ 'mdi-'+ child.icon }}</v-icon>
+            <v-icon color="white">
+              {{ 'mdi-'+ child.icon }}
+            </v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>
@@ -63,6 +66,13 @@
       color="primary"
       flat
     >
+      <v-avatar size="62">
+        <img
+          src="https://elirehema.github.io/mcssa/m.png"
+          alt="M-Koba"
+        >
+      </v-avatar>
+
       <v-spacer />
       <v-btn fab small class="mr-1" icon>
         <v-icon color="white">
@@ -146,9 +156,7 @@ export default {
       url: 'logo.png',
       miniUrl: 'logo.png'
     }
-  },
-  created () {
-    localStorage.setItem('msisdn', '255754710521')
   }
+
 }
 </script>

@@ -58,11 +58,19 @@ const mutations = {
   },
   'UPDATPASSWORD_ERROR' (state) {
     state.showLoader = false
+  },
+  'SAVE_MSISDN' (state, payload) {
+    localStorage.setItem('msisdn', payload.msisdn)
+    state.msisdn = payload.msisdn
+    this.$router.push('/')
   }
 }
 const actions = {
+  _savemsisdn ({ commit }, payload) {
+    commit('SAVE_MSISDN', payload)
+  },
   async _authenticate ({ commit }, requestbody) {
-    commit('AUTHENTICATE',requestbody.password)
+    commit('AUTHENTICATE', requestbody.password)
     await this.$api
       .$post('/auth', requestbody)
       .then((response) => {
@@ -95,7 +103,7 @@ const getters = {
   },
   password: function (state) { return state.password },
   isAuthenticated: function (state) {
-    return state.password !== null
+    return state.msisdn !== null
   }
 
 }

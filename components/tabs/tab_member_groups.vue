@@ -65,7 +65,7 @@ export default {
   },
   methods:{
     rowclick (v) {
-      this.$router.push(`/groups/${v.id}/${this.$route.params.id}`)
+      this.$router.push(`/groups/${v.id}`)
     }
   }
 }

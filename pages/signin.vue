@@ -43,9 +43,9 @@
                 <v-row no-gutters class="mt-5">
                   <v-col cols="12" class=" mt-3">
                     <v-text-field
-                      v-model="form.userId"
+                      v-model="form.msisdn"
                       color="black"
-                      class="text-h4 px-3 form-input"
+                      class=" px-3 form-input"
                       outlined
                       placeholder="e.g 255716000000"
                       label="Phone Number"
@@ -57,7 +57,7 @@
                       v-model="form.password"
                       autocomplete="off"
                       color="black"
-                      class="text-h4 px-3"
+                      class=" px-3"
                       placeholder="*********"
                       type="password"
                       outlined
@@ -119,7 +119,7 @@ export default {
     ...mapActions(['login']),
 
     formSubmit () {
-      this.$store.dispatch('_authenticate', this.form)
+      this.$store.dispatch('_savemsisdn', this.form)
     }
   }
 

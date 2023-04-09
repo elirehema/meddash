@@ -87,7 +87,7 @@ export default {
   methods: {
     async _getgMemberById () {
       await await this.$api
-        .$get(`/members/${this.$route.params.id}`)
+        .$get(`/members/${this.msisdn}`)
         .then((response) => {
           this.member = response
         })
@@ -96,7 +96,7 @@ export default {
     },
     async _getMemberGroups () {
       await await this.$api
-        .$get(`/members/${this.$route.params.id}/groups`)
+        .$get(`/members/${this.msisdn}/groups`)
         .then((response) => {
           this.groups = response == null ? [] : response
         })

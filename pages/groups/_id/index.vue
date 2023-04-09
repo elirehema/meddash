@@ -1,6 +1,6 @@
 
 <template>
-  <v-card v-if="group" flat>
+  <v-card v-if="group && member" flat>
     <v-app-bar
       fade-img-on-scroll
       scroll-threshold="500"
@@ -10,6 +10,9 @@
       </v-toolbar-title>
 
       <v-spacer />
+      <v-chip :color="_getcolor(member.role)" class="font-weight-bold" dark>
+        {{ member.role }}
+      </v-chip>
 
       <template #extension>
         <v-tabs
@@ -39,9 +42,9 @@
       </v-tab-item>
     </v-tabs-items>
     <v-tabs-items v-model="tab">
-    <v-tab-item>
-    <tab-group-account/>
-    </v-tab-item>
+      <v-tab-item>
+        <tab-group-account />
+      </v-tab-item>
       <v-tab-item>
         <tab-group-members :members="members" @update="_getGroupMembers($event)" />
       </v-tab-item>
@@ -61,12 +64,13 @@ export default {
   components: {
     'tab-group-members': TabGroupMembers,
     'tab-group-transactions': TabGroupTransactions,
-    'tab-group-account': TabGroupAccount,
+    'tab-group-account': TabGroupAccount
   },
   data () {
     return {
       group: null,
       members: [],
+      member: null,
       tab: null,
       editedIndex: -1,
       editedItem: {},
@@ -86,6 +90,7 @@ export default {
     }
   },
   created () {
+    this._getThisMember()
     this._getgroupById()
     this._getGroupMembers()
   },
@@ -108,8 +113,31 @@ export default {
         .catch(() => {
         })
     },
-    _closebakdialog () {
-      this.bankdialog = false
+    async _getThisMember () {
+      await await this.$api
+        .$get(`/groups/${this.$route.params.id}/members/${this.msisdn}`)
+        .then((response) => {
+          this.member = response
+        })
+        .catch(() => {
+        })
+    },
+    _getcolor (role) {
+      let color
+      switch (role.toLowerCase()) {
+        case 'member':
+          color = 'orange'
+          break
+        case 'secretary':
+          color = 'green'
+          break
+        case 'chairperson':
+          color = 'blue'
+          break
+        default:
+          color = 'grey'
+      }
+      return color
     }
   }
 }

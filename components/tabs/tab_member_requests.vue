@@ -55,7 +55,6 @@ export default {
         { text: 'Status ', value: 'status' },
         { text: 'RequestType', value: 'type' },
         { text: 'Description', value: 'desc' },
-        { text: 'Member Approvals', value: 'memberApprovalStatus' },
         { text: 'Confirm Date ', value: 'confirmDate' },
         { text: 'Request Date', value: 'logDate' }
       ],

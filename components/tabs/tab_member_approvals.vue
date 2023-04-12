@@ -31,6 +31,10 @@
             <span>{{ item.requestDescription }}</span>
           </v-tooltip>
         </template>
+        <template #item.type="{ item }">
+        <span v-if="item.transactionType != null"> {{  item.transactionType.type }}</span>
+        <span v-else class="grey--text"> Not Provided </span>
+        </template>
         <template #no-data>
           <span>No transaction found ...</span>
         </template>
@@ -49,6 +53,7 @@ export default {
       headers: [
         { text: 'Requestor MSISDN', value: 'requestorMsisdn' },
         { text: 'Role ', value: 'role' },
+        { text: 'RequestType', value: 'type' },
         { text: 'Description', value: 'desc' },
         { text: 'Member Approvals', value: 'memberApprovalStatus' },
         { text: 'Counts ', value: 'requestCount' },

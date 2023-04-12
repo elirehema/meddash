@@ -5,6 +5,8 @@
       <v-app-bar
         fade-img-on-scroll
         scroll-threshold="500"
+        dark
+        color="primary"
       >
         <v-toolbar-title class=" font-weight-medium">
           MEMBER: {{ member.name }} {{ member.familyName }}

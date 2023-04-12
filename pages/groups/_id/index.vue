@@ -2,8 +2,8 @@
 <template>
   <v-card v-if="group && member" flat>
     <v-app-bar
-      fade-img-on-scroll
-      scroll-threshold="500"
+      fade-img-on-scroll dark
+      scroll-threshold="500" color="primary"
     >
       <v-toolbar-title class=" font-weight-medium">
         GROUP: {{ group.name }}
@@ -11,7 +11,7 @@
 
       <v-spacer />
       <v-chip :color="_getcolor(member.role)" class="font-weight-bold" dark>
-        {{ member.role }}
+        {{ member.role === '-1' ? '' : member.role }}
       </v-chip>
 
       <template #extension>
@@ -51,6 +51,9 @@
       <v-tab-item>
         <tab-group-transactions />
       </v-tab-item>
+      <v-tab-item>
+        <tab-member-approvals />
+      </v-tab-item>
     </v-tabs-items>
   </v-card>
 
@@ -60,11 +63,13 @@
 import TabGroupMembers from '@/components/tabs/tab_group_members.vue'
 import TabGroupAccount from '@/components/tabs/tab_group_account.vue'
 import TabGroupTransactions from '@/components/tabs/tab_group_transactions.vue'
+import TabMemberApprovals from '@/components/tabs/tab_member_approvals.vue'
 export default {
   components: {
     'tab-group-members': TabGroupMembers,
     'tab-group-transactions': TabGroupTransactions,
-    'tab-group-account': TabGroupAccount
+    'tab-group-account': TabGroupAccount,
+    'tab-member-approvals': TabMemberApprovals
   },
   data () {
     return {
@@ -76,7 +81,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: ['Account', 'Members', 'Transactions']
+      items: ['Account', 'Members', 'Transactions', 'Approvals']
     }
   },
   head () {

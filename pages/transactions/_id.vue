@@ -3,7 +3,8 @@
     <v-app-bar
       fade-img-on-scroll
       elevation="0"
-      color="white"
+      color="primary"
+      dark
     >
       <v-toolbar-title class="font-weight-medium">
         Transaction: {{ transaction.id }}
@@ -24,7 +25,7 @@
           <tr>
             <td>Group ID</td>
             <td>
-            <nuxt-link :to="`/groups/${transaction.groupId}`">{{ transaction.groupId }}</nuxt-link>
+              {{ transaction.groupId }}
             </td>
           </tr>
           <tr>

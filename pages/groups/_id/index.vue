@@ -63,7 +63,7 @@
 import TabGroupMembers from '@/components/tabs/tab_group_members.vue'
 import TabGroupAccount from '@/components/tabs/tab_group_account.vue'
 import TabGroupTransactions from '@/components/tabs/tab_group_transactions.vue'
-import TabMemberApprovals from '@/components/tabs/tab_member_approvals.vue'
+import TabMemberApprovals from '@/components/tabs/tab_member_requests.vue'
 export default {
   components: {
     'tab-group-members': TabGroupMembers,
@@ -81,7 +81,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: ['Account', 'Members', 'Transactions', 'Approvals']
+      items: ['Account', 'Members', 'Transactions', 'Approval Requests']
     }
   },
   head () {

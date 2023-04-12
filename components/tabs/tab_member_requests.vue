@@ -10,8 +10,8 @@
         :server-items-length="pages"
         @pagination="paginate"
       >
-      <template #item.role="{ item }">
-      <v-chip v-if="item.requestorRole != '-1'" small>{{ item.requestorRole }}</v-chip>
+      <template #item.status="{ item }">
+      <v-chip v-if="item.status != '-1'" small>{{ item.status }}</v-chip>
       </template>
         <template #top>
           <v-toolbar color="" flat>
@@ -28,7 +28,7 @@
                 mdi-information
               </v-icon>
             </template>
-            <span>{{ item.requestDescription }}</span>
+            <span>{{ item.description }}</span>
           </v-tooltip>
         </template>
         <template #item.type="{ item }">
@@ -51,13 +51,13 @@ export default {
       approvals: null,
       pages: 0,
       headers: [
-        { text: 'Requestor MSISDN', value: 'requestorMsisdn' },
-        { text: 'Role ', value: 'role' },
+        { text: 'MSISDN', value: 'requestorMsisdn' },
+        { text: 'Status ', value: 'status' },
         { text: 'RequestType', value: 'type' },
         { text: 'Description', value: 'desc' },
         { text: 'Member Approvals', value: 'memberApprovalStatus' },
-        { text: 'Counts ', value: 'requestCount' },
-        { text: 'Request Date', value: 'requestedDate' }
+        { text: 'Confirm Date ', value: 'confirmDate' },
+        { text: 'Request Date', value: 'logDate' }
       ],
       show: false,
       editedItem: {}
@@ -84,7 +84,7 @@ export default {
           params: {
             page: it.page,
             size: it.itemsPerPage,
-            sort: 'request_timestamp desc',
+            sort: 'logdate desc',
             msisdn: this.msisdn,
             gid: this.$route.params.id
           }
@@ -92,7 +92,7 @@ export default {
         .then((response) => {
           this.pages = response.totalRows
           this.page = response.currentPage
-          this.approvals = response.results
+          this.approvals = response.results == null ? [] : response.results
         })
         .catch((_err) => {})
     }

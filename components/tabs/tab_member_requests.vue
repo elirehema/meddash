@@ -15,7 +15,7 @@
       </template>
         <template #top>
           <v-toolbar color="" flat>
-            <v-toolbar-title class="font-weight-mediumm text-uppercase">
+            <v-toolbar-title class="text-uppercase">
               Approvals
             </v-toolbar-title>
             <v-spacer />

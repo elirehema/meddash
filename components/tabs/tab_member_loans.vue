@@ -19,7 +19,7 @@
             color=""
             flat
           >
-            <v-toolbar-title class=" font-weight-mediumm  text-uppercase">
+            <v-toolbar-title class="text-uppercase">
               {{member.name }} {{member.familyName}} Loans in  Group <strong>{{ group.name }}</strong>
             </v-toolbar-title>
             <v-spacer />

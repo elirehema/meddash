@@ -12,7 +12,7 @@
         color=""
         flat
       >
-        <v-toolbar-title class=" font-weight-medium">
+        <v-toolbar-title class="text-uppercase">
          {{ member.name }} {{member.familyName }} Groups
         </v-toolbar-title>
         <v-spacer />

@@ -20,7 +20,7 @@
             color=""
             flat
           >
-            <v-toolbar-title class=" font-weight-mediumm  text-uppercase">
+            <v-toolbar-title class="text-uppercase">
               All of <strong>{{member.name }} {{member.familyName}} </strong>Transactions
             </v-toolbar-title>
             <v-spacer />
@@ -115,7 +115,7 @@ export default {
         .then((response) => {
           this.pages = response.totalRows
           this.page = response.currentPage
-          this.transactions = response.results
+          this.transactions = response.results == null ? [] : response.results
         }).catch((_err) => {
         })
     }

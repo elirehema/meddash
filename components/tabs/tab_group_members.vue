@@ -5,13 +5,12 @@
     :items="members"
     sort-by="calories"
     class="elevation-1"
-    @click:row="rowclick"
   >
     <template #top>
       <v-toolbar
         flat
       >
-        <v-toolbar-title class="font-weight-medium">
+        <v-toolbar-title class="text-uppercase">
           Group Members
         </v-toolbar-title>
         <v-spacer />

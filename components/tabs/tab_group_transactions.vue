@@ -20,7 +20,7 @@
             color=""
             flat
           >
-            <v-toolbar-title class=" font-weight-medium">
+            <v-toolbar-title class="text-uppercase">
               Group Transactions
             </v-toolbar-title>
             <v-spacer />

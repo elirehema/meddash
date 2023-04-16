@@ -1,8 +1,6 @@
 <template>
   <v-form class="form-box" @submit.prevent="formSubmit">
     <v-container height="100%">
-   
-
       <div class="d-flex align-center justify-center mt-15">
         <v-row class="mt-0" no-gutters>
           <v-col cols="12" md="5" class="  d-flex justify-center align-center ">
@@ -33,19 +31,33 @@
               <v-card-text>
                 <v-row no-gutters class="mt-5">
                   <v-col cols="12" class=" mt-3">
-                    <v-text-field
-                      v-model="form.phoneNumber"
+                   <!-- <v-text-field
+                      v-model="form.otp"
                       color="black"
                       class=" px-3 form-input"
                       outlined
-                      placeholder="e.g 255716000000"
-                      label="Phone Number"
+                      placeholder="_  _  _  _"
+                      label="Enter your token"
                       required
-                    />
+                    />-->
+                    <div class="ma-auto position-relative" style="max-width: 300px">
+                      <v-otp-input
+                        v-model="form.otp"
+                        :disabled="loading"
+                        length="4"
+                        @finish="onFinish"
+                      />
+                      <v-overlay absolute :value="loading">
+                        <v-progress-circular
+                          indeterminate
+                          color="primary"
+                        />
+                      </v-overlay>
+                    </div>
                   </v-col>
                   <v-col cols="12" class=" mt-5 d-flex justify-center">
                     <v-btn block type="submit" color="primary" dark>
-                      Continue
+                      Verify
                       <v-icon right>
                         mdi-arrow-right-bold
                       </v-icon>
@@ -62,14 +74,16 @@
   </v-form>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   layout: 'login',
   data () {
     return {
+      loading: false,
+
       form: {
-        phoneNumber: null
+        otp: null
       },
 
       title: 'Market Grid : Login'
@@ -93,10 +107,21 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['login']),
+    onFinish (rsp) {
+      this.loading = true
+      const request = {
+        phoneNumber: localStorage.getItem('msisdn'),
+        message: this.form.otp
+      }
+      this.$store.dispatch('_authenticate', request)
+    },
 
     formSubmit () {
-      this.$store.dispatch('_requestotp', this.form)
+      const request = {
+        phoneNumber: localStorage.getItem('msisdn'),
+        message: this.form.otp
+      }
+      this.$store.dispatch('_authenticate', request)
     }
   }
 

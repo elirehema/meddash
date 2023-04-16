@@ -19,16 +19,13 @@ const mutations = {
   },
   'AUTHENTICATE_SUCCESS' (state, payload) {
     state.showLoader = false
-    if (payload.accessToken !== undefined) {
-      state.msisdn = payload.msisdn
-      state.account = payload
-      state.isAuthenticated = true
-      state.accessToken = payload.accessToken
-      localStorage.setItem('msisdn', payload.msisdn)
-      this.$router.push('/')
-    } else {
-      this.$router.push('/signin')
-    }
+
+    state.msisdn = payload.msisdn
+    state.account = payload
+    state.isAuthenticated = true
+    state.accessToken = payload.accessToken
+    localStorage.setItem('msisdn', payload.msisdn)
+    this.$router.push('/')
   },
   'LOGOUT_SESSION' (state) {
     window.localStorage.clear()
@@ -38,7 +35,6 @@ const mutations = {
     state.authenticated = false
     // window.location.reload(true)
   },
-
 
   'UPDATPASSWORD_SUCCESS' (state, payload) {
     state.showLoader = false
@@ -93,7 +89,7 @@ const getters = {
   },
   accessToken: function (state) { return state.accessToken },
   isAuthenticated: function (state) {
-    return state.isAuthenticated
+    return localStorage.getItem('accessToken') !== undefined
   }
 
 }

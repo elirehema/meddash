@@ -2,16 +2,14 @@ const state = () => ({
   showLoader: Boolean,
   msisdn: null,
   account: null,
-  password: null,
-  authenticated: false
+  authenticated: false,
+  accessToken: null
 
 })
 
 const mutations = {
-  'AUTHENTICATE' (state, password) {
+  'AUTHENTICATE' (state) {
     state.showLoader = true
-    state.password = password
-    localStorage.setItem('password', password)
   },
   'AUTHENTICATE_FAILED' (state) {
     state.showLoader = false
@@ -21,18 +19,15 @@ const mutations = {
   },
   'AUTHENTICATE_SUCCESS' (state, payload) {
     state.showLoader = false
-    if (payload.responseCode === 0) {
+    if (payload.accessToken !== undefined) {
       state.msisdn = payload.msisdn
       state.account = payload
+      state.isAuthenticated = true
+      state.accessToken = payload.accessToken
       localStorage.setItem('msisdn', payload.msisdn)
-      if (payload.status === 'INACTIVE') {
-        this.$router.push('/password')
-      } else {
-        state.authenticated = true
-        this.$router.push('/')
-      }
+      this.$router.push('/')
     } else {
-      // window.location.reload(true)
+      this.$router.push('/signin')
     }
   },
   'LOGOUT_SESSION' (state) {
@@ -44,11 +39,7 @@ const mutations = {
     // window.location.reload(true)
   },
 
-  'UPDATPASSWORD' (state, password) {
-    state.showLoader = true
-    state.password = password
-    localStorage.setItem('password', password)
-  },
+
   'UPDATPASSWORD_SUCCESS' (state, payload) {
     state.showLoader = false
     state.authenticated = true
@@ -60,9 +51,9 @@ const mutations = {
     state.showLoader = false
   },
   'SAVE_MSISDN' (state, payload) {
-    localStorage.setItem('msisdn', payload.msisdn)
-    state.msisdn = payload.msisdn
-    this.$router.push('/')
+    localStorage.setItem('msisdn', payload.phoneNumber)
+    state.msisdn = payload.phoneNumber
+    this.$router.push('/verify')
   }
 }
 const actions = {
@@ -70,9 +61,9 @@ const actions = {
     commit('SAVE_MSISDN', payload)
   },
   async _authenticate ({ commit }, requestbody) {
-    commit('AUTHENTICATE', requestbody.password)
+    commit('AUTHENTICATE')
     await this.$api
-      .$post('/auth', requestbody)
+      .$post('/otp/verify', requestbody)
       .then((response) => {
         commit('AUTHENTICATE_SUCCESS', response)
       })
@@ -81,12 +72,11 @@ const actions = {
       })
   },
 
-  async _updatepassword ({ commit }, requestbody) {
-    commit('UPDATPASSWORD', requestbody.newPassword)
+  async _requestotp ({ commit }, requestbody) {
     await this.$api
-      .$put('/auth', requestbody)
+      .$post('/otp', requestbody)
       .then((response) => {
-        commit('UPDATPASSWORD_SUCCESS', response)
+        commit('SAVE_MSISDN', requestbody)
       })
       .catch(() => {
         commit('UPDATPASSWORD_ERROR')
@@ -101,9 +91,9 @@ const getters = {
   msisdn: function (state) {
     return state.msisdn
   },
-  password: function (state) { return state.password },
+  accessToken: function (state) { return state.accessToken },
   isAuthenticated: function (state) {
-    return state.msisdn !== null
+    return state.isAuthenticated
   }
 
 }

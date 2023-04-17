@@ -35,7 +35,7 @@
           <span v-else class="grey--text"> - - - -  </span>
         </template>
         <template #item.status="{item}">
-          <v-icon v-if="item.status === '1'" color="green">
+          <v-icon v-if="item.status === '0'" color="green">
             mdi-check-decagram
           </v-icon>
           <v-icon v-else color="red">

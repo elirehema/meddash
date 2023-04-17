@@ -21,7 +21,7 @@
             flat
           >
             <v-toolbar-title class="text-uppercase">
-              All of <strong>{{member.name }} {{member.familyName}} </strong>Transactions
+              All of <strong>{{ member.name }} {{ member.familyName }} </strong>Transactions
             </v-toolbar-title>
             <v-spacer />
           </v-toolbar>
@@ -29,6 +29,18 @@
         <template #item.type="{item}">
           <span v-if="item.transactionType">{{ item.transactionType.type }}-({{ item.transactionType.flag }})</span>
           <span v-else class="grey--text"> Not Provided </span>
+        </template>
+        <template #item.group="{item}">
+          <span v-if="item.group">{{ item.group.name }}</span>
+          <span v-else class="grey--text"> - - - -  </span>
+        </template>
+        <template #item.status="{item}">
+          <v-icon v-if="item.status === '1'" color="green">
+            mdi-check-decagram
+          </v-icon>
+          <v-icon v-else color="red">
+            mdi-close 
+          </v-icon>
         </template>
         <template #item.destination="{item}">
           <span v-if="item.destinationAccount != '-1'">{{ item.destinationAccount }}</span>
@@ -81,14 +93,14 @@ export default {
       pages: 0,
       headers: [
         { text: 'MSISDN', value: 'msisdn' },
-        { text: 'Source ', value: 'sourceAccount' },
+        { text: 'Group ', value: 'group' },
         { text: 'Destination', value: 'destination' },
         { text: 'Amount', value: 'amount' },
+        { text: 'Status', value: 'status' },
         { text: 'Receipt ', value: 'receipt' },
         { text: 'Transaction Type ', value: 'type' },
         { text: 'SMS', value: 'sms' },
         { text: 'Transaction Date', value: 'transactionDate' }
-
 
       ],
       show: false,
@@ -111,7 +123,7 @@ export default {
     },
 
     async paginate (it) {
-      await this.$api.$get(`/members/${this.msisdn}/transactions`, { params: { page: it.page, size: it.itemsPerPage, sort: 'transid desc' } })
+      await this.$api.$get(`/members/${this.msisdn}/transactions`, { params: { page: it.page, size: it.itemsPerPage, sort: 'null' } })
         .then((response) => {
           this.pages = response.totalRows
           this.page = response.currentPage

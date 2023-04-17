@@ -46,11 +46,13 @@
           </tr>
           <tr>
             <td>Transaction Type</td>
-            <td>{{ transaction.transactionType.type }}</td>
+            <td v-if="transaction.transactionType">{{ transaction.transactionType.type }}</td>
+            <td v-else> <span  class="grey--text"> Not Provided </span></td>
           </tr>
           <tr>
             <td>Transaction Type Flag</td>
-            <td>{{ transaction.transactionType.flag }}</td>
+            <td v-if="transaction.transactionType">{{ transaction.transactionType.flag }}</td>
+            <td v-else> <span  class="grey--text"> Not Provided </span></td>
           </tr>
           <tr>
             <td>Source Balance Before (S.B.B)</td>

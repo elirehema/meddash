@@ -2,7 +2,7 @@ const type = 'website'
 const url = 'https://www.ngazi.co.tz/'
 const title = 'Doctors'
 const description = 'Easy the planning of your upcoming medical appointment with your doctors'
-const mainImage = 'https://img.freepik.com/premium-vector/patient-consultation-with-doctor-illustration_677179-56.jpg'
+const mainImage = 'https://c8.alamy.com/comp/2G7MBAW/mom-and-toddler-appointment-to-doctor-2d-vector-isolated-illustration-2G7MBAW.jpg'
 
 export default (meta) => {
   return [

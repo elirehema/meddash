@@ -1,8 +1,8 @@
 const type = 'website'
 const url = 'https://www.ngazi.co.tz/'
-const title = 'M-Koba'
-const description = 'M-Koba self-service web app. A new digital form of saving that provides security of the groups’ money, transparency and simplicity for members to contribute from anywhere through Vodacom M-Pesa.'
-const mainImage = 'https://pbs.twimg.com/media/D3C7ySzX4AAyHTh.jpg'
+const title = 'Doctors'
+const description = 'Easy the planning of your upcoming medical appointment with your doctors'
+const mainImage = 'https://img.freepik.com/premium-vector/patient-consultation-with-doctor-illustration_677179-56.jpg'
 
 export default (meta) => {
   return [

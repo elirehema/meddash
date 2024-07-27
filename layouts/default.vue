@@ -69,8 +69,8 @@
       <nuxt-link to="/">
         <v-avatar size="62">
           <img
-            src="https://elirehema.github.io/mddash/v.png"
-            alt="M-Koba"
+            src="https://elirehema.github.io/meddash/v.png"
+            alt="Doctors"
           >
         </v-avatar>
       </nuxt-link>
@@ -123,7 +123,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container class="ma-2" height="100%" fluid>
+      <v-container class="ma-0 pa-1" height="100%" fluid>
         <nuxt />
       </v-container>
     </v-main>

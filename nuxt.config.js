@@ -15,13 +15,13 @@ export default {
     middleware: ['router']
   },
   env: {
-    baseUrl: isDev ? 'http://localhost:8084/api/v1' : 'https://eppg.ngazi.co.tz/Savings/portal'
+    baseUrl: isDev ? 'http://192.168.1.21:8084/api/v1' : 'https://eppg.ngazi.co.tz/Savings/portal'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'Mkoba: %s',
-    title: 'Mkoba',
+    titleTemplate: 'Doctor: %s',
+    title: 'Doctors',
     htmlAttrs: {
       lang: 'en'
     },

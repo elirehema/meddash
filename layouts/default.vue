@@ -18,7 +18,7 @@
 
         <v-list-item v-else link>
           <v-img
-            lazy-src="https://myvodacom.vodacom.co.tz/assets/myvodacom/downloadFile/VD-1650X450_VICOBA%201.webp"
+            lazy-src="https://t3.ftcdn.net/jpg/00/81/99/34/360_F_81993402_vbYaI7g7DYw9XAUG1JQ7RkApGAsVSWGE.jpg"
             max-height="70"
             max-width="200"
             src="https://elirehema.github.io/mcapp/mkoba.png"
@@ -69,19 +69,19 @@
       <nuxt-link to="/">
         <v-avatar size="62">
           <img
-            src="https://elirehema.github.io/mcssa/v.png"
+            src="https://elirehema.github.io/mddash/v.png"
             alt="M-Koba"
           >
         </v-avatar>
       </nuxt-link>
 
       <v-spacer />
-      <v-btn fab small class="mr-1" icon>
+      <v-btn v-if="false" fab small class="mr-1" icon>
         <v-icon color="white">
           mdi-help-circle-outline
         </v-icon>
       </v-btn>
-      <v-btn fab small class="mr-5" icon>
+      <v-btn v-if="false" fab small class="mr-5" icon>
         <v-icon color="white">
           mdi-bell-badge-outline
         </v-icon>
@@ -101,7 +101,7 @@
               size="56"
               v-on="on"
             >
-              <v-img src="https://img.freepik.com/premium-photo/beautiful-arabic-girl-with-scarf-blue-background_21730-3073.jpg?w=2000" />
+              <v-img src="https://cdn4.vectorstock.com/i/1000x1000/83/08/female-doctor-avatar-character-vector-14878308.jpg" />
             </v-avatar>
           </v-badge>
         </template>

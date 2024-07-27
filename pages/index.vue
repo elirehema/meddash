@@ -1,7 +1,6 @@
 
 <template>
-  <div v-if="isauthenticated">
-    <v-card v-if="member" flat>
+    <v-card v-if="appointments" flat>
       <v-app-bar
         fade-img-on-scroll
         scroll-threshold="500"
@@ -9,7 +8,7 @@
         color="primary"
       >
         <v-toolbar-title class=" font-weight-medium">
-          MEMBER: {{ member.name }} {{ member.familyName }}
+          WELCOME
         </v-toolbar-title>
 
         <v-spacer />
@@ -43,48 +42,34 @@
       </v-tabs-items>
       <v-tabs-items v-model="tab">
         <v-tab-item>
-          <tab-member-groups :groups="groups" :member="member" />
-        </v-tab-item>
-        <v-tab-item>
-          <tab-member-transactions :member="member" />
+          <tab-doctor-appoitments :appointments="appointments"  />
         </v-tab-item>
       </v-tabs-items>
     </v-card>
-
     <skeleton-table-loader v-else />
-  </div>
-  <div v-else @click="$store.dispatch('_logoutsession')">
-    <img
-      lazy-src="https://picsum.photos/id/11/10/6"
-      height="500"
-      src="https://cdni-cf.bugaboo.tv/dm/sz-md/i/images/2020/05/15/who_are_you_logo_1589524415_1485.png"
-    >
-  </div>
+
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import TabMemberGroups from '@/components/tabs/tab_member_groups.vue'
-import TabMemberTransactions from '@/components/tabs/tab_member_transactions.vue'
+import TabDoctorAppointments from '@/components/tabs/tab_appointments.vue'
 export default {
   components: {
-    'tab-member-groups': TabMemberGroups,
-    'tab-member-transactions': TabMemberTransactions
+    'tab-doctor-appoitments': TabDoctorAppointments,
   },
   data () {
     return {
-      member: null,
-      groups: null,
+      appointments: null,
       tab: null,
       editedIndex: -1,
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: ['Groups', 'Transactions']
+      items: ['Appointments']
     }
   },
   head () {
     return {
-      title: 'Member'
+      title: 'Appointments'
     }
   },
   computed: {
@@ -96,24 +81,14 @@ export default {
     }
   },
   created () {
-    this._getgMemberById()
     this._getMemberGroups()
   },
   methods: {
-    async _getgMemberById () {
-      await await this.$api
-        .$get(`/members/${this.msisdn}`)
-        .then((response) => {
-          this.member = response
-        })
-        .catch(() => {
-        })
-    },
     async _getMemberGroups () {
       await await this.$api
-        .$get(`/members/${this.msisdn}/groups`)
+        .$get(`/appointments`)
         .then((response) => {
-          this.groups = response == null ? [] : response
+          this.appointments = response == null ? [] : response
         })
         .catch(() => {
         })

@@ -69,7 +69,7 @@
       <nuxt-link to="/">
         <v-avatar size="62">
           <img
-            src="https://elirehema.github.io/meddash/v.png"
+            src="https://elirehema.github.io/meddash/doctor.png"
             alt="Doctors"
           >
         </v-avatar>
@@ -86,7 +86,7 @@
           mdi-bell-badge-outline
         </v-icon>
       </v-btn>
-      <v-menu transition="slide-y-transition" :rounded="'0'" offset-y>
+      <v-menu v-if="false" transition="slide-y-transition" :rounded="'0'" offset-y>
         <template #activator="{ on, attrs }">
           <v-badge
             bordered
@@ -123,7 +123,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container class="ma-0 pa-1" height="100%" fluid>
+      <v-container class="ma-0" height="100%" fluid>
         <nuxt />
       </v-container>
     </v-main>

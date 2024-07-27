@@ -21,10 +21,10 @@ export default (ctx) => {
 
         },
         light: {
-          primary: '#4c4c4c',
+          primary: '#3CB371',
           accent: '#000000',
           secondary: '#f49123',
-          success: '#f2b72d',
+          success: '#008000',
           info: '#2196F3',
           warning: '#FB8C00',
           error: '#FF0000',

@@ -18,7 +18,7 @@
             v-model="tab"
             align-with-title
           >
-            <v-tabs-slider color="yellow" />
+            <v-tabs-slider color="primary" />
 
             <v-tab
               v-for="item in items"

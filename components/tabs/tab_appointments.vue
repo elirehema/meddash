@@ -11,7 +11,7 @@
           flat
         >
           <v-toolbar-title class="text-uppercase">
-            Doctor appointments
+            Scheduled appointments
           </v-toolbar-title>
           <v-spacer />
         </v-toolbar>
@@ -34,6 +34,14 @@
           {{ item.appointmentStatus }}
         </v-chip>
       </template>
+      <template #item.actions="{item}">
+        <v-btn x-small rounded color="success">
+          <v-icon left>mdi-check</v-icon>
+          Accept</v-btn>
+          <v-btn x-small rounded color="error">
+          <v-icon left>mdi-close</v-icon>
+          Reject</v-btn>
+      </template>
     </v-data-table>
     <skeleton-table-loader v-else />
   </template>
@@ -52,9 +60,10 @@
         { text: 'Client Mobile No. ', value: 'clientMobileNo' },
         { text: 'Doctor Name ', value: 'doctorName' },
         { text: 'Dr. Mobile No ', value: 'doctorMobileNo' },
-        { text: 'Receipt', value: 'receipt' },
+        { text: 'Receipt #', value: 'receipt' },
         { text: 'Status ', value: 'status' },
-        { text: 'Appointment Date', value: 'date' }
+        { text: 'Appointment Date', value: 'date' },
+        { text: 'Actions', value: 'actions' }
       ]
     }),
     methods: {

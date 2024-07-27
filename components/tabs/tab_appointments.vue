@@ -35,10 +35,10 @@
         </v-chip>
       </template>
       <template #item.actions="{item}">
-        <v-btn x-small rounded color="success">
+        <v-btn small rounded color="success">
           <v-icon left>mdi-check</v-icon>
           Accept</v-btn>
-          <v-btn x-small rounded color="error">
+          <v-btn small rounded color="error">
           <v-icon left>mdi-close</v-icon>
           Reject</v-btn>
       </template>

@@ -40,7 +40,7 @@
           Accept</v-btn>
           <v-btn small rounded color="error">
           <v-icon left>mdi-close</v-icon>
-          Reject</v-btn>
+          Decline</v-btn>
       </template>
     </v-data-table>
     <skeleton-table-loader v-else />

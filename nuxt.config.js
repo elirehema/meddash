@@ -15,7 +15,7 @@ export default {
     middleware: ['router']
   },
   env: {
-    baseUrl: isDev ? 'http://192.168.1.21:8084/api/v1' : 'https://eppg.ngazi.co.tz/Savings/portal'
+    baseUrl: isDev ? 'http://192.168.1.21:8084/api/v1' : 'https://eppg.ngazi.co.tz/api/v1'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head

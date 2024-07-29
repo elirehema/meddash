@@ -22,7 +22,7 @@
       </template>
      
       <template #item.date="{item}">
-        <span>{{ item.appointmentDate | dateformat }}</span>
+        <span>{{ item.appointmentDate | datetimeformat }}</span>
       </template>
       <template #item.status="{ item }">
         <v-chip dark small :color="item.status == '100' ? 'green':'success'">
@@ -41,6 +41,21 @@
           <v-btn small rounded color="error">
           <v-icon left>mdi-close</v-icon>
           Decline</v-btn>
+      </template>
+      <template #item.receipt="{item}">
+        <v-tooltip left>
+      <template v-slot:activator="{ on, attrs }">
+        <v-icon
+          color="grey"
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          mdi-receipt-text
+        </v-icon>
+      </template>
+      <span>RECEIPT NO: {{ item.receipt }}</span>
+    </v-tooltip>
       </template>
     </v-data-table>
     <skeleton-table-loader v-else />
